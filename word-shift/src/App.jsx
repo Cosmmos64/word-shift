@@ -1,24 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import wordList from './wordlist.js';
+import isDictionaryWord from 'check-dictionary-word';
 
 export default function App() {
-  const list = shuffledList();
+  const [words, setWords] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [shuffled, setShuffled] = useState([]);
+
+  useEffect(() => {
+    setShuffled(shuffledList());
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (checkSubset(shuffled, inputValue.split('')) && isDictionaryWord(inputValue) && !words.includes(inputValue)) {
+      setWords((prevWords) => [...prevWords, inputValue]);
+      setInputValue('');
+    }
+  };
+
+  const checkSubset = (parentArray, subsetArray) => {
+    return subsetArray.every((element) => parentArray.includes(element));
+  };
+
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
   return (
     <>
-      <h1>{list}</h1>
-      <form onSubmit={handleSubmit()}>
-        <input type="text" />
+      <h1>{shuffled.join(' ')}</h1>
+      <form onSubmit={handleSubmit}>
+        <input 
+          value={inputValue} 
+          onChange={handleChange} 
+          placeholder="Enter a word" 
+        />
+        <button type="submit">Submit</button>
       </form>
       <ul>
-        <li></li>
+        {words.map((word, index) => <li key={index}>{word}</li>)}
       </ul>
     </>
   );
-}
-function handleSubmit() {
-
 }
 
 function shuffledList() {
@@ -38,5 +63,6 @@ function shuffledList() {
     }
     return array;
   }
+  
   return shuffle(list);
 }
