@@ -12,37 +12,70 @@ export default function App() {
     setShuffled(shuffledList());
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (checkSubset(shuffled, inputValue.split('')) && isDictionaryWord(inputValue) && !words.includes(inputValue)) {
-      setWords((prevWords) => [...prevWords, inputValue]);
-      setInputValue('');
-    }
-  };
+  useEffect(() => {
+    const handleKeyPress = async (e) => {
+      const key = e.key.toLowerCase();
+
+      if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
+        setInputValue((prev) => prev + key);
+      }
+
+      if (key === 'enter') {
+        await submitWord();
+      }
+
+      if (key === 'backspace') {
+        setInputValue((prev) => prev.slice(0, -1));
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [inputValue, shuffled]);
 
   const checkSubset = (parentArray, subsetArray) => {
     return subsetArray.every((element) => parentArray.includes(element));
   };
 
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
+  const submitWord = async () => {
+    const inputLetters = inputValue.split('');
+
+    if (
+      checkSubset(shuffled, inputLetters) &&
+      await isDictionaryWord(inputValue) &&
+      !words.includes(inputValue)
+    ) {
+      setWords((prevWords) => [...prevWords, inputValue]);
+    } else {
+      console.log("Invalid word or word already used");
+    }
+
+    setInputValue('');
+  };
+
+  const listItems = () => {
+    return shuffled.map((letter, index) => (
+      <li className="letter" key={index}>{letter}</li>
+    ));
   };
 
   return (
-    <>
-      <h1>{shuffled.join(' ')}</h1>
-      <form onSubmit={handleSubmit}>
-        <input 
-          value={inputValue} 
-          onChange={handleChange} 
-          placeholder="Enter a word" 
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <ul>
-        {words.map((word, index) => <li key={index}>{word}</li>)}
+    <div className="wrapper">
+      <div className="maincolumn">
+        <div className="current-word">
+          <h2>{inputValue}</h2>
+        </div>
+        <ul className="letters">{listItems()}</ul>
+      </div>
+      <ul className="words">
+        {words.map((word, index) => (
+          <li key={index}>{word}</li>
+        ))}
       </ul>
-    </>
+    </div>
   );
 }
 
@@ -50,10 +83,8 @@ function shuffledList() {
   const randWord1 = wordList[Math.floor(Math.random() * wordList.length)];
   const randWord2 = wordList[Math.floor(Math.random() * wordList.length)];
   
-  // Combine the two random words into a single string
   const combinedWords = randWord1 + randWord2;
   
-  // Create an array from the combined words
   const list = combinedWords.split('');
 
   function shuffle(array) {

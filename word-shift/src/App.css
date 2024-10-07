@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
+
+* {
+    font-family: Fredoka, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+@media (min-width:600px)  {
+    .letters {
+        grid-template-columns: auto auto;
+    }
+}
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(229, 230, 236);
+}
+.maincolumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+}
+.current-word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(212, 215, 223);
+    border-radius: 100px;
+    box-shadow: #999 0px 0px 20px;
+    margin: 20px;
+    padding: 10px;
+    padding-bottom: 15px;
+    letter-spacing: .5rem;
+    font-size: 3em;
+}
+.letters {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 50px;
+    background-color: rgb(212, 215, 223);
+    box-shadow: #999 0px 0px 20px;
+    width: 50vw;
+    height: 50vh;
+    margin: 20px;
+}
+
+.letter {
+    width: 8vw;
+    height: 8vw;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(195, 199, 210);
+    border-radius: 20px;
+    font-size: 4em;
+    text-transform: uppercase
+}
+.words {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+    width: 20vw;
+    height: 100vh;
+    background-color: rgb(212, 215, 223);
+}
