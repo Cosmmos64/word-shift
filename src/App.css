@@ -59,7 +59,7 @@
     background-color: rgb(195, 199, 210);
     border-radius: 20px;
     font-size: 4em;
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 .words {
     display: flex;
@@ -69,4 +69,7 @@
     width: 20vw;
     height: 100vh;
     background-color: rgb(212, 215, 223);
+}
+.letter.correct {
+    background-color: green;
 }
