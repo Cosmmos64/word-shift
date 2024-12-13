@@ -8,6 +8,7 @@ export default function App() {
   const [inputValue, setInputValue] = useState('');
   const [shuffled, setShuffled] = useState([]);
   const [correctLetters, setCorrectLetters] = useState(new Map());
+  const [wordCount, setWordCount] = useState(0);
 
   useEffect(() => {
     setShuffled(shuffledList());
@@ -64,6 +65,7 @@ export default function App() {
     ) {
       setWords((prevWords) => [...prevWords, inputValue]);
       highlightCorrectLetters(inputLetters);
+      setWordCount(wordCount + 1);
     } else {
       console.log("Invalid word or word already used");
     }
@@ -101,8 +103,9 @@ export default function App() {
   return (
     <div className="wrapper">
       <div className="maincolumn">
-        <div className="current-word">
-          <h2>{inputValue}</h2>
+        <div className="currentword">
+          <h2 className="wordinput">{inputValue}</h2>
+          <h2 className="wordcount">{wordCount}</h2>
         </div>
         <ul className="letters">{listItems()}</ul>
       </div>

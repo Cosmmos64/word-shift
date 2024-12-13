@@ -15,6 +15,9 @@
     height: 100vh;
     width: 100vw;
     background-color: rgb(229, 230, 236);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .maincolumn {
     display: flex;
@@ -22,20 +25,47 @@
     align-items: center;
     justify-content: center;
     width: 80vw;
+    float: left;
 }
-.current-word {
+
+.currentword {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vw;
+}
+
+.wordinput {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgb(212, 215, 223);
-    border-radius: 100px;
+    border-radius: 100px 50px 50px 100px ;
     box-shadow: #999 0px 0px 20px;
-    margin: 20px;
     padding: 10px;
+    width: 34vw;
+    height: 80px;
+    margin-right: 1vw;
     padding-bottom: 15px;
     letter-spacing: .5rem;
     font-size: 3em;
 }
+
+.wordcount {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(212, 215, 223);
+    border-radius: 50px 100px 100px 50px ;
+    box-shadow: #999 0px 0px 20px;
+    padding: 10px;
+    height: 80px;
+    width: 5vw;
+    height: 80px;
+    letter-spacing: .5rem;
+    font-size: 3em;
+}
+
 .letters {
     display: grid;
     grid-template-columns: auto auto auto auto auto;
@@ -44,14 +74,14 @@
     border-radius: 50px;
     background-color: rgb(212, 215, 223);
     box-shadow: #999 0px 0px 20px;
-    width: 50vw;
-    height: 50vh;
+    width: 40vw;
+    height: 32vw;
     margin: 20px;
 }
 
 .letter {
-    width: 8vw;
-    height: 8vw;
+    width: 80px;
+    height: 80px;
     list-style: none;
     display: flex;
     justify-content: center;
@@ -60,6 +90,7 @@
     border-radius: 20px;
     font-size: 4em;
     text-transform: uppercase;
+    margin: 0px
 }
 .words {
     display: flex;
@@ -69,7 +100,16 @@
     width: 20vw;
     height: 100vh;
     background-color: rgb(212, 215, 223);
+    font-size: 2em;
 }
+
+.words li {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .letter.correct {
     background-color: green;
 }
