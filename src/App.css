@@ -113,3 +113,13 @@
 .letter.correct {
     background-color: green;
 }
+.popup {
+    position: absolute;
+    background-color: #999;
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
