@@ -141,7 +141,7 @@ function Remove({wordToRemove}) {
 
   return (
     <div className="wrapper">
-      <div className="popup">asdgh</div>
+      <div className="popup">You Win<div><button>Play Again</button></div></div>
       <div className="maincolumn">
         <div className="currentword">
           <h2 className="wordinput">{inputValue}</h2>
